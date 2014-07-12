@@ -1,5 +1,8 @@
 class AdminController < ApplicationController
 
+include CurrentCart
+before_action :set_cart
+
 	before_action :admin_user
 
   	def index
