@@ -26,14 +26,14 @@ before_action :set_line_item, only: [:show, :edit, :update, :destroy]
   # POST /line_items
   # POST /line_items.json
   def create
-    @cart = current_cart
+    #@cart = current_cart
     product = Product.find(params[:product_id])
     @line_item = @cart.add_product(product.id)
 
     respond_to do |format|
         if @line_item.save
             format.html { redirect_to root_path }
-            format.js
+            format.js { @current_item = @line_item }
             format.json { render action: 'show',
                 status: :created, location: @line_item }
         else
